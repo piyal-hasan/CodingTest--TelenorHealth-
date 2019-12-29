@@ -11,6 +11,7 @@ Appointments
 | 7  |   17    |     Manik    |     22    |     null   |
 
 Doctors 
+
 | id | status  |  doctor_name | 
 | -- | ------- | ------------ | 
 |  22 |   1    |     Khaled   | 
@@ -19,6 +20,7 @@ Doctors
 
 
 Slots 
+
 | id  |      date      |   duration   |   time  |
 | --  |    ------      | ------------ | ------- |
 |  11 |  2019-10-10    |     2900      |  01:01  |
@@ -39,7 +41,7 @@ ordered by slot_date_time in increasing order.
 
 Output format:
 
-| doctor_name  | patient_name |   slot_date_time   
+| doctor_name  | patient_name |   slot_date_time  | 
 |  ----------- | ------------ |   --------------- 
 |    X    |    Y     | 2019-10-11 01:01    |
 |    P    |    Q     | 2019-10-11 02:01    |
