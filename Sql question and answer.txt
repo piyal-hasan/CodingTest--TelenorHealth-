@@ -1,0 +1,65 @@
+Q1. Write a SQL query to fetch ALL appointments on October,
+ordered by slot_date_time in increasing order.
+
+SELECT
+    doctors.doctor_name,
+    appointments.patient_name,
+    CONCAT(
+        slots.date,
+        ' ',
+        TIME_FORMAT(slots.time, '%h:%i')
+    ) AS slot_date_time
+FROM
+    appointments
+JOIN slots ON appointments.slot_id = slots.id
+JOIN doctors ON appointments.doctor_id = doctors.id
+WHERE
+    MONTH(DATE) = 10  
+ORDER BY `slot_date_time`  ASC
+
+
+
+Q3. Write a SQL query to show list of doctors with their total appointment durations in decreasing order.
+
+
+SELECT
+    doctors.doctor_name,
+    SUM(slots.duration) AS total_duration
+FROM
+    appointments
+JOIN slots ON appointments.slot_id = slots.id
+JOIN doctors ON appointments.doctor_id = doctors.id
+WHERE
+    appointments.doctor_id IN(
+    SELECT
+        appointments.doctor_id
+    FROM
+        appointments
+    JOIN slots ON appointments.slot_id = slots.id
+    JOIN doctors ON appointments.doctor_id = doctors.id
+    GROUP BY
+        appointments.doctor_id
+)
+GROUP BY
+    appointments.doctor_id
+ORDER BY
+  total_duration DESC
+
+
+
+
+
+Q2. Write a SQL query to fetch the doctor with highest number of appointments
+
+SELECT tmp.doctor_name,MAX(total_appoinments) as appointment_count FROM (
+    SELECT doctors.doctor_name as doctor_name,COUNT(appointments.doctor_id) as total_appoinments 
+    FROM 
+    appointments
+    JOIN doctors ON appointments.doctor_id=doctors.id
+    GROUP BY appointments.doctor_id
+    )tmp
+
+
+
+
+
