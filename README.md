@@ -1,3 +1,6 @@
+### Database Question and Solution
+#### TABLE
+
 Appointments
 
 | id | slot_id | patient_name | doctor_id | deleted_at |
@@ -10,6 +13,27 @@ Appointments
 | 6  |   16    |     Anik     |     22    |     null   |
 | 7  |   17    |     Manik    |     22    |     null   |
 
+SQL:
+```sql
+CREATE TABLE `appointments` (
+  `id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `slot_id` int(10) NOT NULL,
+  `patient_name` varchar(255) NOT NULL,
+  `doctor_id` int(10) NOT NULL,
+  `deleted_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+INSERT INTO `appointments` (`id`, `slot_id`, `patient_name`, `doctor_id`, `deleted_at`) VALUES
+(1, 11, 'Tasin', 23, '2019-10-09 18:00:00'),
+(2, 12, 'Nawaz', 22, '2019-12-24 17:38:02'),
+(3, 13, 'Rakib', 23, '2019-12-24 17:38:02'),
+(4, 14, 'Hossen', 23, '2019-12-24 17:38:02'),
+(5, 15, 'Aritra', 24, '2019-12-24 17:38:02'),
+(6, 16, 'Anik', 22, '2019-12-24 17:38:02'),
+(7, 17, 'Manik', 22, '2019-12-24 17:38:02');
+
+```
+
 Doctors 
 
 | id | status  |  doctor_name | 
@@ -17,6 +41,23 @@ Doctors
 |  22 |   1    |     Khaled   | 
 |  23 |   1    |     Hasan    | 
 |  24 |   0    |     Rumi     | 
+
+SQL:
+
+```sql
+CREATE TABLE `doctors` (
+   `id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `STATUS` int(5) NOT NULL,
+  `doctor_name` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+
+INSERT INTO `doctors` (`id`, `STATUS`, `doctor_name`) VALUES
+(22, 1, 'Khaled'),
+(23, 1, 'Hasan'),
+(24, 0, 'Rumi');
+
+```
 
 
 Slots 
@@ -30,6 +71,26 @@ Slots
 |  15 |  2019-08-01    |     500   |  01:31  |
 |  16 |  2019-10-07    |     300    |  02:31  |
 |  17 |  2019-10-02    |     1200      |  03:31  |
+
+SQL:
+```sql
+CREATE TABLE `slots` (
+  `id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `date` date NOT NULL,
+  `duration` int(20) NOT NULL,
+  `time` time NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+
+INSERT INTO `slots` (`id`, `date`, `duration`, `time`) VALUES
+(11, '2019-10-10', 2900, '01:01:00'),
+(12, '2019-10-11', 1200, '02:01:00'),
+(13, '2019-10-18', 1100, '03:01:00'),
+(14, '2019-09-08', 200, '11:01:00'),
+(15, '2019-08-01', 500, '01:31:00'),
+(16, '2019-10-07', 300, '02:31:00'),
+(17, '2019-10-02', 1200, '03:01:00');
+```
 
 
 ### Output excected:
